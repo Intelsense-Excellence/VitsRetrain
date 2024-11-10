@@ -266,3 +266,11 @@ scipy.io.wavfile.write("finetuned_output.wav", rate=speech["sampling_rate"], dat
 and see all MMS-TTS checkpoints on the Hugging Face Hub: [facebook/mms-tts](https://huggingface.co/models?sort=trending&search=facebook%2Fmms-tts).
 * [Hugging Face 🤗 Transformers](https://huggingface.co/docs/transformers/index) for the model integration, [Hugging Face 🤗 Accelerate](https://huggingface.co/docs/accelerate/index) for the distributed code and [Hugging Face 🤗 datasets](https://huggingface.co/docs/datasets/index) for facilitating datasets access.
 * @nivibilla's [adapation](https://github.com/nivibilla/efficient-vits-finetuning) of HifiGan's discriminator, used for English VITS training.
+
+
+
+## Custom
+----------
+Sawra Wandb: 9440bda1d549b38b4bed9fcee4f2eacb0a8b3af0
+! python conf_writer.py 
+! accelerate launch run_vits_finetuning.py ./finetune_ben.json
