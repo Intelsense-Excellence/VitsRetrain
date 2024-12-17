@@ -1,17 +1,16 @@
 {
     "project_name": "mms_bengali_finetuning",
     "push_to_hub": true,
-    "hub_strategy": "checkpoint",
-    "hub_model_id": "intelsense/vits_mms_ft_nctb-sp1",
+    "hub_model_id": "intelsense/vits_mms_ft_tech-miracurol",
     "report_to": [
         "wandb"
     ],
     "save_total_limit": 1,
     "load_best_model_at_end": true,
     "save_strategy": "no",
-
+    "overwrite_output_dir": true,
     "output_dir": "./tmp/vits_finetuned_ben",
-    "dataset_name": "intelsense/nctb-audiobook-large",
+    "dataset_name": "samikhan121/tech-miracurol",
     "audio_column_name": "audio",
     "text_column_name": "transcription",
     "speaker_id_column_name": "speaker",
@@ -26,15 +25,13 @@
     "max_duration_in_seconds": 20,
     "min_duration_in_seconds": 1.0,
     "max_tokens_length": 500,
-    
     "model_name_or_path": "intelsense/mms-tts-ben",
-    
-    "preprocessing_num_workers": 24,
+    "preprocessing_num_workers": 4,
     "do_train": true,
     "num_train_epochs": 300,
     "gradient_accumulation_steps": 1,
     "gradient_checkpointing": false,
-    "per_device_train_batch_size": 128,
+    "per_device_train_batch_size": 16,
     "learning_rate": 2e-05,
     "adam_beta1": 0.8,
     "adam_beta2": 0.99,
@@ -42,7 +39,7 @@
     "group_by_length": false,
     "do_eval": true,
     "eval_steps": 50,
-    "per_device_eval_batch_size": 128,
+    "per_device_eval_batch_size": 16,
     "max_eval_samples": 25,
     "do_step_schedule_per_epoch": true,
     "weight_disc": 3,
