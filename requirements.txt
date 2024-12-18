@@ -6,3 +6,4 @@ wandb
 tensorboard
 Cython
 coqui-tts
+pybangla
