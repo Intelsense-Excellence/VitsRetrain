@@ -825,6 +825,8 @@ def main():
                 logger.info(
                     f"Resize speaker emeddings from {num_speakers} to {new_num_speakers} with embedding size {speaker_embedding_size}."
                 )
+
+                print(model.config.num_speakers, new_num_speakers, speaker_embedding_size)
                 model.resize_speaker_embeddings(new_num_speakers, speaker_embedding_size)
             elif new_num_speakers == 1:
                 logger.info("Only one speaker detected on the training set. Embeddings are not reinitialized.")
