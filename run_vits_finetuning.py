@@ -35,6 +35,7 @@ from transformers.trainer_pt_utils import LengthGroupedSampler
 from transformers.trainer_utils import get_last_checkpoint, is_main_process
 from transformers.utils import send_example_telemetry
 from utils import plot_alignment_to_numpy, plot_spectrogram_to_numpy, VitsDiscriminator, VitsModelForPreTraining, VitsFeatureExtractor, slice_segments, VitsConfig, uromanize
+from normalizer import normalize
 
 
 if is_wandb_available():
@@ -771,7 +772,18 @@ def main():
             input_columns=[audio_column_name, text_column_name],
         )
 
+    def normalize_text(example):
+        example[text_column_name] = normalize(example[text_column_name])
+        return example
+
     with training_args.main_process_first(desc="dataset map pre-processing"):
+        # Normalize dataset
+        vectorized_datasets = vectorized_datasets.map(
+            normalize_text,
+            num_proc=num_workers,
+            desc="normalize text",
+        )
+
         # convert from np.float64 to np.float32
         vectorized_datasets.set_format(type="numpy", columns=[audio_column_name])
         vectorized_datasets = vectorized_datasets.map(

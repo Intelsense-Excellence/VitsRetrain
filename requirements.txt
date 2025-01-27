@@ -7,3 +7,4 @@ tensorboard
 Cython
 coqui-tts
 pybangla
+normalizer @ git+https://github.com/csebuetnlp/normalizer@d405944dde5ceeacb7c2fd3245ae2a9dea5f35c9
